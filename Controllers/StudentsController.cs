@@ -48,7 +48,7 @@ namespace SchoolAPI.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Unknown error");
             }
         }
-        [HttpGet("id : int")]
+        [HttpGet("id")]
         [MapToApiVersion("1.0")]
         public ActionResult<StudentModel> Get(int id)
         {
@@ -69,7 +69,7 @@ namespace SchoolAPI.Controllers
             }
 
         }
-        [HttpGet("id : int")]
+        [HttpGet("v2/{id}")]
         [MapToApiVersion("1.1")]
         public ActionResult<StudentModel> Get11(int id)
         {
