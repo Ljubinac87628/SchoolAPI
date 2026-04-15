@@ -2,26 +2,37 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Build
-      run: dotnet build
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
 
-    - name: Docker build
-      run: docker build -t my-api .
+      - name: Restore
+        run: dotnet restore
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3     
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Publish
+        run: dotnet publish -c Release -o out
+
+      - name: Docker build
+        run: docker build -t my-api .
+    
 	  
-    - name: Restore dependencies
-      run:  dotnet restore
+    
 
-    - name: Publish project
-      run:  dotnet publish -c Release -o out
+	
+
+    
+
+	  
