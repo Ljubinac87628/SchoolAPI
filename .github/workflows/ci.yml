@@ -23,8 +23,8 @@ jobs:
       - name: Build
         run: dotnet build --no-restore
 
-      - name: Publish project
-        run: dotnet publish -c Release -o out --no-build
+      - name: Publish
+        run: dotnet publish -c Release -o out --no-restore
 
       - name: Docker build
         run: docker build -t my-api .
