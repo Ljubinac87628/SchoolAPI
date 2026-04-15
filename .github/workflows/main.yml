@@ -25,8 +25,8 @@ jobs:
       - name: Publish
         run: dotnet publish -c Release -o out
 
-      - name: Docker build
-        run: "docker build -t my-api ."
+     # - name: Docker build
+     #  run: "docker build -t my-api ."
     
 	  
     
